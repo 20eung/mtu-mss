@@ -46,8 +46,7 @@
 - 인증 알고리즘(MD5-HMAC, SHA-HMAC)을 지원한다.
 - 대칭키 암호화 알고리즘(DES, 3DES, AES)을 지원한다.
 - AES일경우 40 Bytes(Seq 4 + SPI 4 + IV 16 + Trailer 16)
-
-#### - ESP Overhead
+- ESP Overhead
 ```
   - Outer IP Header:        20 Bytes
   - Sequence Number:         4 Bytes
@@ -59,12 +58,12 @@
   - Authentication Data: 12-32 Bytes(SHA-1 to SHA-512)
   - Total:              [50-93]Bytes
 ```
-#### - Initialization Vector
+- Initialization Vector
 ```
   - AES: 16 Bytes
   - DES:  8 Bytes
 ```
-#### - Authentication Data
+- Authentication Data
 ```
   - MD5/SHA-1: 12 Bytes
   - SHA-256:   16 Bytes
