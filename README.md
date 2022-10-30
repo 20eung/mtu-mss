@@ -33,17 +33,24 @@
 - Initialization Vector
   - AES: 16 Bytes
   - DES:  8 Bytes
-  
+
 - Authentication Data
   - MD5/SHA-1: 12 Bytes
   - SHA-256:   16 Bytes
   - SHA-384:   24 Bytes
   - SHA-512:   32 Bytes
 
+- TCP Header
+![TCP Header](./img/tcp_header.png "TCP Header")
 
-![TCP Header](https://mblogthumb-phinf.pstatic.net/MjAxOTA4MzFfMjIx/MDAxNTY3MjI0OTQzMTA5.yJTiJit26wKKo7epTzjKO11rkK6AFhzlMxNv9vlIp28g.W6-lp9Q5J9CKGaOtmZQUAIlOGBGDS8AFs-OqlpgPqzEg.JPEG.6yujin6/1.jpg?type=w800 "TCP Header")
+- IP Header
+![IP Header](./img/ip_header.png "IP Header")
 
-![IP Header](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcsJiyH%2Fbtq1D1R8yH3%2F3z4ISVZ0wTejHKH2g310bk%2Fimg.png "IP Header")
+- UDP Header
+![UDP Header](./img/udp_header.png "UDP Header")
 
+- ICMP Header
+![ICMP Header](./img/icmp_header.png "ICMP Header")
 
-![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBUphv%2FbtrcUkz494L%2FMVTxBa5o5QP82MCP7YmUhK%2Fimg.png "image")
+- ARP Header
+![ARP Header](./img/arp_header.jpg "ARP Header")
