@@ -9,4 +9,4 @@
 - 일반적인 이더넷인 경우, MSS 값은 1,460바이트(1500-20-20)
 - MSS는 4계층에서 가질 수 있는 최대 데이터 값
 
-<img src=https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBUphv%2FbtrcUkz494L%2FMVTxBa5o5QP82MCP7YmUhK%2Fimg.png>
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBUphv%2FbtrcUkz494L%2FMVTxBa5o5QP82MCP7YmUhK%2Fimg.png "image")
