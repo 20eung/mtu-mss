@@ -32,14 +32,17 @@
   - Total:              [50-93]Bytes
 ```
 - Initialization Vector
+```
   - AES: 16 Bytes
   - DES:  8 Bytes
-
+```
 - Authentication Data
+```
   - MD5/SHA-1: 12 Bytes
   - SHA-256:   16 Bytes
   - SHA-384:   24 Bytes
   - SHA-512:   32 Bytes
+```
 
 - TCP Header
 ![TCP Header](./img/tcp_header.png "TCP Header")
