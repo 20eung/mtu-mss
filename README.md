@@ -157,8 +157,13 @@ Options:
   <destination>      dns name or ip address
   -s <size>          use <size> as number of data bytes to be sent
   -M <pmtud opt>     define mtu discovery, can be one of <do|dont|want>
-
-
+```
+- 일반적인 상황에서의 Ping
+  - 표준 이더넷 MTU 1500 바이트
+  - ICMP 헤더: 8 바이트
+  - IP 헤더: 20 바이트
+  - 최대 MSS: 1472 바이트(1500-8-20)
+```
 Ubuntu# ping -s 1472 -M do 192.168.25.25
 PING 192.168.25.25 (192.168.25.25) 1472(1500) bytes of data.
 1480 bytes from 192.168.25.25: icmp_seq=1 ttl=62 time=3.77 ms
