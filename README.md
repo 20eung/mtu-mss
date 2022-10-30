@@ -32,7 +32,7 @@
 -  IPSec Header: 가변적이며 최대 93(?) Bytes
 ```
 
-### IPSec Header
+### IPSec VPN 용어 설명
 
 #### 1. AH(Authentication Header)
 - 송수신하는 IP패킷에 대한 인증을 제공한다.
@@ -46,25 +46,6 @@
 - 인증 알고리즘(MD5-HMAC, SHA-HMAC)을 지원한다.
 - 대칭키 암호화 알고리즘(DES, 3DES, AES)을 지원한다.
 - AES일경우 40 Bytes(Seq 4 + SPI 4 + IV 16 + Trailer 16)
-
-#### 3. SA(Security Associations)
-- AH와 ESP로 IPSec 서비스를 구현할 때, 암호화 및 인증에 사용할 요소를 SA로 정의한다.
-- 가장 중요한 요소는 암/복호화 키의 수명이다.
-
-#### 4. IKE(Internet Key Exchange)
-- ISAKMP와 Oakley Protocol으로 결합된 (IPSec에서 사용되는) 키 관리 프로토콜이다.
-- IKE는 상호 개체간 인증된 보안 통신 채널을 생성하고, SA 정보를 협상한다.
-
-#### 5. 기타 정보
-- 전송모드: 0 Bytes
-- 터널모드: 20 Bytes
-- 암호화/인증 알고리즘과 HMAC에 따라 오버헤드가 다름
-- 터널 모드에서 2개의 IP 헤더가 전송됨. (내부, 외부)
-- AES ESP 사용 시 이상적인 MSS는 1328 이라고 함
-  - https://packetpushers.net/ipsec-bandwidth-overhead-using-aes/
-- HMAC(Hash-based Message Authentication Code)
-  - 해시 함수와 공유키를 사용한 메시지 인증 코드
-- PMTUD(Path MTU Discovery)
 
 #### - ESP Overhead
 ```
@@ -90,6 +71,27 @@
   - SHA-384:   24 Bytes
   - SHA-512:   32 Bytes
 ```
+
+#### 3. SA(Security Associations)
+- AH와 ESP로 IPSec 서비스를 구현할 때, 암호화 및 인증에 사용할 요소를 SA로 정의한다.
+- 가장 중요한 요소는 암/복호화 키의 수명이다.
+
+#### 4. IKE(Internet Key Exchange)
+- ISAKMP와 Oakley Protocol으로 결합된 (IPSec에서 사용되는) 키 관리 프로토콜이다.
+- IKE는 상호 개체간 인증된 보안 통신 채널을 생성하고, SA 정보를 협상한다.
+
+#### 5. 기타 정보
+- 전송모드: 0 Bytes
+- 터널모드: 20 Bytes
+- 암호화/인증 알고리즘과 HMAC에 따라 오버헤드가 다름
+- 터널 모드에서 2개의 IP 헤더가 전송됨. (내부, 외부)
+- AES ESP 사용 시 이상적인 MSS는 1328 이라고 함
+  - https://packetpushers.net/ipsec-bandwidth-overhead-using-aes/
+- HMAC(Hash-based Message Authentication Code)
+  - 해시 함수와 공유키를 사용한 메시지 인증 코드
+- PMTUD(Path MTU Discovery)
+
+
 
 ### MTU 문제를 진단하는 빠르고 쉬운 방법
 #### - Ping (Windows)
