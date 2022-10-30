@@ -20,16 +20,17 @@
 
 #### IPSec Header
 - ESP Overhead
-  - Outer IP Header:       20 Bytes
-  - Sequence Number:        4 Bytes
-  - SPI:                    4 Bytes
-  - Initialization Vector: 16 Bytes(AES)
-  - ESP Padding:        [0-15]Bytes
-  - Padding Length:         1 Bytes
-  - Next Header:            1 Bytes
-  - Authentication Data:   32 Bytes(SHA-512)
-  - Total:             [78-93]Bytes
-
+```
+  - Outer IP Header:        20 Bytes
+  - Sequence Number:         4 Bytes
+  - SPI:                     4 Bytes
+  - Initialization Vector: 8 or 16 Bytes(DES or AES)
+  - ESP Padding:         [0-15]Bytes
+  - Padding Length:          1 Bytes
+  - Next Header:             1 Bytes
+  - Authentication Data: 12-32 Bytes(SHA-1 to SHA-512)
+  - Total:              [50-93]Bytes
+```
 - Initialization Vector
   - AES: 16 Bytes
   - DES:  8 Bytes
