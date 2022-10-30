@@ -6,7 +6,7 @@
 - MTU는 2계층의 데이터 값
 
 ### MSS(Maximum Segment Size)
-- MSS는 4계층에서 가질 수 있는 최대 데이터 값
+- MSS는 4계층에서 가질 수 있는 최대 데이터 크기
 - 순수하게 MTU에서 각종 헤더를 제외한 값
 - 일반적인 IP 표준 헤더 20바이트
 - 일반적인 TCP 표준 헤더 20바이트(추가되는 옵션 헤더 제외)
@@ -33,14 +33,37 @@
 ```
 
 #### IPSec Header
+
+1. AH(Authentication Header)
+- 송수신하는 IP패킷에 대한 인증을 제공한다.
+- 데이터의 무결성을 보장한다.
+- 패킷을 암호화하지 않는다. 기밀성을 보장하지 않는다.
+- 인증 알고리즘(MD5-HMAC, SHA-HMAC)을 지원한다.
+
+2. ESP(Encapsulating Security Payload)
+- 송수신하는 IP패킷에 대한 인증과 암호화를 실시한다.
+- 데이터의 무결성과 기밀성을 보장한다.
+- 인증 알고리즘(MD5-HMAC, SHA-HMAC)을 지원한다.
+- 대칭키 암호화 알고리즘(DES, 3DES, AES)을 지원한다.
+- AES일경우 40 Bytes(Seq 4 + SPI 4 + IV 16 + Trailer 16)
+
+3. SA(Security Associations)
+- AH와 ESP로 IPSec 서비스를 구현할 때, 암호화 및 인증에 사용할 요소를 SA로 정의한다.
+- 가장 중요한 요소는 암/복호화 키의 수명이다.
+
+4. IKE(Internet Key Exchange)
+- ISAKMP와 Oakley Protocol으로 결합된 (IPSec에서 사용되는) 키 관리 프로토콜이다.
+- IKE는 상호 개체간 인증된 보안 통신 채널을 생성하고, SA 정보를 협상한다.
+
+5. 기타 정보
 - 전송모드: 0 Bytes
 - 터널모드: 20 Bytes
 - 암호화/인증 알고리즘과 HMAC에 따라 오버헤드가 다름
 - 터널 모드에서 2개의 IP 헤더가 전송됨. (내부, 외부)
-- AH: 24 Bytes
-- ESP: AES일경우 40 Bytes(Seq 4 + SPI 4 + IV 16 + Trailer 16)
-- AES ESP 사용 시 이상적인 MSS는 1328 이라고 함(https://packetpushers.net/ipsec-bandwidth-overhead-using-aes/)
-- HMAC(Hash-based Message Authentication Code)): 해시 함수와 공유키를 사용한 메시지 인증 코드
+- AES ESP 사용 시 이상적인 MSS는 1328 이라고 함
+  - https://packetpushers.net/ipsec-bandwidth-overhead-using-aes/
+- HMAC(Hash-based Message Authentication Code)
+  - 해시 함수와 공유키를 사용한 메시지 인증 코드
 - PMTUD(Path MTU Discovery)
 
 - ESP Overhead
