@@ -32,30 +32,30 @@
 -  IPSec Header: 가변적이며 최대 93(?) Bytes
 ```
 
-#### IPSec Header
+### IPSec Header
 
-1. AH(Authentication Header)
+#### 1. AH(Authentication Header)
 - 송수신하는 IP패킷에 대한 인증을 제공한다.
 - 데이터의 무결성을 보장한다.
 - 패킷을 암호화하지 않는다. 기밀성을 보장하지 않는다.
 - 인증 알고리즘(MD5-HMAC, SHA-HMAC)을 지원한다.
 
-2. ESP(Encapsulating Security Payload)
+#### 2. ESP(Encapsulating Security Payload)
 - 송수신하는 IP패킷에 대한 인증과 암호화를 실시한다.
 - 데이터의 무결성과 기밀성을 보장한다.
 - 인증 알고리즘(MD5-HMAC, SHA-HMAC)을 지원한다.
 - 대칭키 암호화 알고리즘(DES, 3DES, AES)을 지원한다.
 - AES일경우 40 Bytes(Seq 4 + SPI 4 + IV 16 + Trailer 16)
 
-3. SA(Security Associations)
+#### 3. SA(Security Associations)
 - AH와 ESP로 IPSec 서비스를 구현할 때, 암호화 및 인증에 사용할 요소를 SA로 정의한다.
 - 가장 중요한 요소는 암/복호화 키의 수명이다.
 
-4. IKE(Internet Key Exchange)
+#### 4. IKE(Internet Key Exchange)
 - ISAKMP와 Oakley Protocol으로 결합된 (IPSec에서 사용되는) 키 관리 프로토콜이다.
 - IKE는 상호 개체간 인증된 보안 통신 채널을 생성하고, SA 정보를 협상한다.
 
-5. 기타 정보
+#### 5. 기타 정보
 - 전송모드: 0 Bytes
 - 터널모드: 20 Bytes
 - 암호화/인증 알고리즘과 HMAC에 따라 오버헤드가 다름
@@ -66,7 +66,7 @@
   - 해시 함수와 공유키를 사용한 메시지 인증 코드
 - PMTUD(Path MTU Discovery)
 
-- ESP Overhead
+#### - ESP Overhead
 ```
   - Outer IP Header:        20 Bytes
   - Sequence Number:         4 Bytes
@@ -78,12 +78,12 @@
   - Authentication Data: 12-32 Bytes(SHA-1 to SHA-512)
   - Total:              [50-93]Bytes
 ```
-- Initialization Vector
+#### - Initialization Vector
 ```
   - AES: 16 Bytes
   - DES:  8 Bytes
 ```
-- Authentication Data
+#### - Authentication Data
 ```
   - MD5/SHA-1: 12 Bytes
   - SHA-256:   16 Bytes
@@ -92,7 +92,7 @@
 ```
 
 ### MTU 문제를 진단하는 빠르고 쉬운 방법
-- Ping (Windows)
+#### - Ping (Windows)
 ```
 C:>ping /?
 
@@ -146,7 +146,7 @@ Reply from 172.16.68.1: bytes=1384 time=8ms TTL=251
 Reply from 172.16.68.1: bytes=1384 time=9ms TTL=251
 Reply from 172.16.68.1: bytes=1384 time=9ms TTL=251
 ```
-- Ping (Linux)
+#### - Ping (Linux)
 ```
 Ubuntu# ping -h
 Usage
