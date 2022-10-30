@@ -94,12 +94,10 @@ Pinging 172.16.32.1 with 1472 bytes of data:
 Reply from 172.16.32.1: bytes=1472 time=3ms TTL=251
 Reply from 172.16.32.1: bytes=1472 time=4ms TTL=251
 Reply from 172.16.32.1: bytes=1472 time=4ms TTL=251
-Reply from 172.16.32.1: bytes=1472 time=3ms TTL=251
 
 C:\Users\netcanuck>ping 172.16.32.1 -f -l 1473
 
 Pinging 172.16.32.1 with 1473 bytes of data:
-Packet needs to be fragmented but DF set.
 Packet needs to be fragmented but DF set.
 Packet needs to be fragmented but DF set.
 Packet needs to be fragmented but DF set.
@@ -117,7 +115,6 @@ Pinging 172.16.68.1 with 1472 bytes of data:
 Packet needs to be fragmented but DF set.
 Packet needs to be fragmented but DF set.
 Packet needs to be fragmented but DF set.
-Packet needs to be fragmented but DF set.
 
 C:\Users\netcanuck>ping 172.16.68.1 -f -l 1384
 
@@ -125,7 +122,6 @@ Pinging 172.16.68.1 with 1472 bytes of data:
 Reply from 172.16.68.1: bytes=1384 time=8ms TTL=251
 Reply from 172.16.68.1: bytes=1384 time=9ms TTL=251
 Reply from 172.16.68.1: bytes=1384 time=9ms TTL=251
-Reply from 172.16.68.1: bytes=1384 time=8ms TTL=251
 ```
 - Ping (Linux)
 ```
@@ -143,19 +139,14 @@ Ubuntu# ping -s 1472 -M do 192.168.25.25
 PING 192.168.25.25 (192.168.25.25) 1472(1500) bytes of data.
 1480 bytes from 192.168.25.25: icmp_seq=1 ttl=62 time=3.77 ms
 1480 bytes from 192.168.25.25: icmp_seq=2 ttl=62 time=3.25 ms
-^C
---- 192.168.25.25 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 4006ms
-rtt min/avg/max/mdev = 3.188/3.325/3.771/0.223 ms
+1480 bytes from 192.168.25.25: icmp_seq=3 ttl=62 time=3.21 ms
 
 Ubuntu# ping -s 1473 -M do 192.168.25.25
 PING 192.168.25.25 (192.168.25.25) 1473(1501) bytes of data.
 From 192.168.25.26 icmp_seq=1 Frag needed and DF set (mtu = 1500)
 ping: local error: message too long, mtu=1500
 ping: local error: message too long, mtu=1500
-^C
---- 192.168.25.25 ping statistics ---
-75 packets transmitted, 0 received, +5 errors, 100% packet loss, time 6099ms
+ping: local error: message too long, mtu=1500
 ```
 
 ### Header 구조
