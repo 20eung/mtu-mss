@@ -8,15 +8,18 @@
 ### MSS(Maximum Segment Size)
 - MSS는 4계층에서 가질 수 있는 최대 데이터 값
 - 순수하게 MTU에서 각종 헤더를 제외한 값
-- 일반적인 IP 표준 헤더 20바이트, TCP 표준 헤더 20바이트(추가되는 옵션 헤더 제외)
-- 일반적인 이더넷인 경우, MSS 값은 1,460바이트(1500-20-20)
+- 일반적인 IP 표준 헤더 20바이트
+- 일반적인 TCP 표준 헤더 20바이트(추가되는 옵션 헤더 제외)
+- 일반적인 이더넷인 경우 MSS 값은 1,460바이트(1500 - 20(IP) - 20(TCP))
 
 ### Header 크기
+```
 -   TCP Header: 20 Bytes(옵션 헤더 제외)
 -   UDP Header:  8 Bytes
 -    IP Header: 20 Bytes
 -  ICMP Header:  8 Bytes
 - IPSec Header: 20 Bytes
+```
 
 #### IPSec Header
 - ESP Overhead
