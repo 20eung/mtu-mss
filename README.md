@@ -2,8 +2,8 @@
 ### MTU(Maximum Transmission Unit)
 - 네트워크에서 한 번에 보낼 수 있는 최대 데이터 크기(헤더 포함)
 - 단위는 Outet(옥텟)이며 Byte와 같은 사이즈(1 Outet = 1 Byte)
-- 일반적인 이더넷에서 수용할 수 있는 크기는 1,500바이트
-- MTU는 2계층의 데이터값
+- 일반적인 이더넷에서 수용할 수 있는 크기는 1,500 바이트
+- MTU는 2계층의 데이터 값
 
 ### MSS(Maximum Segment Size)
 - MSS는 4계층에서 가질 수 있는 최대 데이터 값
@@ -14,17 +14,34 @@
 
 ### Header 크기
 ```
--   TCP Header: 20 Bytes(옵션 헤더 제외)
--   UDP Header:  8 Bytes
--    IP Header: 20 Bytes
--  ICMP Header:  8 Bytes
-- IPSec Header: 가변적이며 최대 64 Bytes
+-    TCP Header: 20 Bytes(옵션 헤더 제외)
+-    UDP Header:  8 Bytes
+-   IPv4 Header: 20 Bytes
+-   ICMP Header:  8 Bytes
+-    GRE Header: 24 Bytes(IP Protocol 47, RFC 2784)
+-   6in4 Header: 20 Bytes(IP Protocol 41, RFC 4213)
+-   4in6 Header: 40 Bytes(RFC 6333)
+-   MPLS Header:  4 Bytes
+-   IEEE 802.1Q:  4 Bytes
+- Q-in-Q Header:  8 Bytes
+-  VxLAN Header: 50 Bytes
+-    OTV Header: 42 Bytes
+-   LISP Header: 36 Bytes(IPv4), 56 Bytes(IPv6)
+-  NVGRE Header: 42 Bytes
+-    STT Header: 54 Bytes
+-  IPSec Header: 가변적이며 최대 93(?) Bytes
 ```
 
 #### IPSec Header
-- 전송모드와 터널 모드에 따라 오버헤드가 다름
+- 전송모드: 0 Bytes
+- 터널모드: 20 Bytes
 - 암호화/인증 알고리즘과 HMAC에 따라 오버헤드가 다름
 - 터널 모드에서 2개의 IP 헤더가 전송됨. (내부, 외부)
+- AH: 24 Bytes
+- ESP: AES일경우 40 Bytes(Seq 4 + SPI 4 + IV 16 + Trailer 16)
+- AES ESP 사용 시 이상적인 MSS는 1328 이라고 함(https://packetpushers.net/ipsec-bandwidth-overhead-using-aes/)
+- HMAC(Hash-based Message Authentication Code)): 해시 함수와 공유키를 사용한 메시지 인증 코드
+- PMTUD(Path MTU Discovery)
 
 - ESP Overhead
 ```
@@ -52,7 +69,7 @@
 ```
 
 ### MTU 문제를 진단하는 빠르고 쉬운 방법
-- Ping
+- Ping (Windows)
 ```
 C:>ping /?
 
@@ -109,6 +126,36 @@ Reply from 172.16.68.1: bytes=1384 time=8ms TTL=251
 Reply from 172.16.68.1: bytes=1384 time=9ms TTL=251
 Reply from 172.16.68.1: bytes=1384 time=9ms TTL=251
 Reply from 172.16.68.1: bytes=1384 time=8ms TTL=251
+```
+- Ping (Linux)
+```
+Ubuntu# ping -h
+Usage
+  ping [options] <destination>
+
+Options:
+  <destination>      dns name or ip address
+  -s <size>          use <size> as number of data bytes to be sent
+  -M <pmtud opt>     define mtu discovery, can be one of <do|dont|want>
+
+
+Ubuntu# ping -s 1472 -M do 192.168.25.25
+PING 192.168.25.25 (192.168.25.25) 1472(1500) bytes of data.
+1480 bytes from 192.168.25.25: icmp_seq=1 ttl=62 time=3.77 ms
+1480 bytes from 192.168.25.25: icmp_seq=2 ttl=62 time=3.25 ms
+^C
+--- 192.168.25.25 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+rtt min/avg/max/mdev = 3.188/3.325/3.771/0.223 ms
+
+Ubuntu# ping -s 1473 -M do 192.168.25.25
+PING 192.168.25.25 (192.168.25.25) 1473(1501) bytes of data.
+From 192.168.25.26 icmp_seq=1 Frag needed and DF set (mtu = 1500)
+ping: local error: message too long, mtu=1500
+ping: local error: message too long, mtu=1500
+^C
+--- 192.168.25.25 ping statistics ---
+75 packets transmitted, 0 received, +5 errors, 100% packet loss, time 6099ms
 ```
 
 ### Header 구조
